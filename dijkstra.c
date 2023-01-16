@@ -91,7 +91,15 @@ int shortestPath(p_node head, int src, int dest)
         }
         u = minVertical(dijkstraHead);
     }
-    int distance = getPointerDijkstra(dijkstraHead, dest)->weight;
+    int distance= -1;
+    while (dijkstraHead != NULL)
+    {
+        if (dijkstraHead->node->nodeId == dest)
+        {
+            distance  =  dijkstraHead->weight;
+        }
+        dijkstraHead = dijkstraHead->next;
+    }
     if (distance == INFINITY)
     {
         distance = -1;
