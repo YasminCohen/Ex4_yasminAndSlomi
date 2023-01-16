@@ -42,7 +42,8 @@ void addNode_B(p_node *head)
 {
     int src;
     scanf("%d", &src);
-    int dest =-1 , weight =-1;
+    int dest;
+    int weight;
     p_node temp = getNode(src, head);
     if (temp == NULL)
     {
@@ -54,10 +55,11 @@ void addNode_B(p_node *head)
         p_node newNode = (p_node)(malloc(sizeof(node)));
         if (newNode == NULL)
             exit(1);
-        inGraph->next = newNode;
         newNode->nodeId = src;
         newNode->edges = NULL;
         newNode->next = NULL;
+        inGraph->next = newNode;
+        
         while (scanf("%d", &dest) != 0 && scanf("%d", &weight) != 0)
         {
             if (isalpha(dest) || isalpha(weight))
@@ -69,23 +71,7 @@ void addNode_B(p_node *head)
     }
     else
     {
-        
-    if (temp->edges != NULL)
-    {
-        p_edge temp1 = temp->edges;
-
-        while (temp1 != NULL)
-        {
-            p_edge p1 = NULL;
-            p1 = temp1;
-            temp1 = temp1->next;
-            free(p1);
-        }
-    }
-
-    else{ // if it was no edges
-        free(temp->edges);
-    }
+        freeEdges(temp);
         temp->edges = NULL;
         
         while (scanf("%d", &dest) != 0 && scanf("%d", &weight) != 0)
