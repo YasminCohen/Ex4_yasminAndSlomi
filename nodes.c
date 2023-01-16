@@ -26,14 +26,16 @@ p_node getNode(int id, p_node *head)
 void addNode(p_node *head, int src)
 {
 
-    int dest;
-    int weight;
-    p_node temp = getNode(src, head);
+    int dest,weight;
+    dest =-1;
+    weight =-1;
+    p_node temp;
+    temp = getNode(src, head);
     while (scanf("%d", &dest) != 0 && scanf("%d", &weight) != 0)
     {
         if (isalpha(dest) || isalpha(weight))
         {
-            break;
+            return;
         }
         addEdge(temp, dest, weight, head);
     }
