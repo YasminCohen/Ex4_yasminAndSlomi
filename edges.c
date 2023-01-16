@@ -30,15 +30,13 @@ void addEdge(p_node currentNode, int dest, int w, p_node *head)
         // allocate memory and check if it allocated
         edgesOfNode->next = (p_edge)malloc(sizeof(edge));
         if (edgesOfNode->next == NULL)
-        {
-            perror("there is no enough space to add edge, sorry\n");
-            exit(0);
-        }
+        exit(1);
+        p_edge new_1 = edgesOfNode->next;
         // add edge in the end of node's list of edges
-        edgesOfNode->next->next = NULL;
-        edgesOfNode->next->weight = w;
+        new_1 ->next = NULL;
+        new_1 ->weight = w;
         node *D = getNode(dest, head);
-        edgesOfNode->next->dest = &(*D);
+        new_1 ->dest = &(*D);
     }
 }
 
