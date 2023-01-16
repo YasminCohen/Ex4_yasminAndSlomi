@@ -33,8 +33,8 @@ int main()
                     break;
                 }
             }
-            //choice = c;
-            continue;
+            choice = c;
+            //continue;
         }
         if (choice == 'B')
         {
