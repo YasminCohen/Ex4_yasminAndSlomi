@@ -6,9 +6,7 @@
 /* function to create the graph with a given number of nodes */
 p_node createGraph(int num_nodes)
 {
-    //node *head = NULL;
-    p_node head = NULL;
-    p_node newNode, temp = NULL;
+    p_node newNode, temp, head = NULL;
     
     head = (p_node)malloc(sizeof(node));
     if (head == NULL)
@@ -17,23 +15,25 @@ p_node createGraph(int num_nodes)
     head->nodeId = 0;
     head->next = NULL;
     head->edges = NULL;
+
     temp = head;
     
-    for (int i = 1; i < num_nodes; i++)
+    for (int i = 0; i < num_nodes-1; i++)
     {
         newNode = (p_node)malloc(sizeof(node));
         if (newNode == NULL)
         exit(1);
+        
+        temp->next = newNode;
 
-        newNode->nodeId = i;
+        newNode->nodeId = (i+1);
         newNode->next = NULL;
         newNode->edges = NULL;
-        temp->next = newNode;
+
         temp = temp->next;
     }
     return head;
 }
-
 /* function to delete the graph, goes over all
 *  edges and then nodes and free their memories */
 void deleteGraph(p_node *head)
@@ -48,27 +48,27 @@ void deleteGraph(p_node *head)
             tempEdge = tempEdge->next;
             free(tempEdgefree);
         }
-        node *tempFree = tempNode;
+        p_node tempFree = tempNode;
         tempNode = tempNode->next;
         free(tempFree);
     }
     free(tempNode);
 }
 
-//print fuction in order to check myself (can be deleted)
-void printGraph(p_node head)
-{ 
-    p_node tempNode = head;
-    while (tempNode != NULL)
-    {
-        printf("Node: %d {", tempNode->nodeId);
-        p_edge tempEdge = tempNode->edges;
-        while (tempEdge != NULL)
-        {
-            printf("dest: %d weight: %d ", tempEdge->dest->nodeId, tempEdge->weight);
-            tempEdge = tempEdge->next;
-        }
-        printf("}");
-        tempNode = tempNode->next;
-    }
-}
+// //print fuction in order to check myself (can be deleted)
+// void printGraph(p_node head)
+// { 
+//     p_node tempNode = head;
+//     while (tempNode != NULL)
+//     {
+//         printf("Node: %d {", tempNode->nodeId);
+//         p_edge tempEdge = tempNode->edges;
+//         while (tempEdge != NULL)
+//         {
+//             printf("dest: %d weight: %d ", tempEdge->dest->nodeId, tempEdge->weight);
+//             tempEdge = tempEdge->next;
+//         }
+//         printf("}");
+//         tempNode = tempNode->next;
+//     }
+// }
