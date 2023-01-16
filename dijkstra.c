@@ -64,10 +64,19 @@ int shortestPath(p_node head, int src, int dest)
     while (u != NULL)
     {
         p_edge edgeIndex = u->node->edges;
+    p_dijkstra head = dijkstraHead;
+    p_dijkstra v  = NULL;
         while (edgeIndex != NULL)
         {
-            // relax
-            p_dijkstra v = getPointerDijkstra(dijkstraHead, edgeIndex->dest->nodeId);
+              while (head != NULL)
+    {
+        if (head->node->nodeId == edgeIndex->dest->nodeId)
+        {
+             v =  head;
+        }
+        head = head->next;
+    }
+
             int newDist = u->weight + edgeIndex->weight;
             if (v->weight > newDist)
             {
