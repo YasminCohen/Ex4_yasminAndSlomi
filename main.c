@@ -19,7 +19,7 @@ int main()
             scanf("%d", &v);
             *head = createGraph(v);
 
-            scanf("%c", &c);
+            //scanf("%c", &c);
 
             while (scanf("%c", &c) != 0)
             {
@@ -33,7 +33,8 @@ int main()
                     break;
                 }
             }
-            choice = c;
+            //choice = c;
+            continue;
         }
         if (choice == 'B')
         {
