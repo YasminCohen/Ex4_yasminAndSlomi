@@ -6,21 +6,8 @@
 /* function to add the edge with a given src(our node), dest and weight of edge */
 void addEdge(p_node currentNode, int dest, int w, p_node *head)
 {
-    // if there are no edges on the current node
-    if (currentNode->edges == NULL)
-    {
-        // allocate memory in size of sruct Edge and return pointer to this struct
-        currentNode->edges = (p_edge)malloc(sizeof(edge)); 
-
-        if (currentNode->edges == NULL)
-       exit(1);
-        // add edge in empty list
-        currentNode->edges->weight = w;
-        currentNode->edges->next = NULL;
-        node *D = getNode(dest, head);
-        currentNode->edges->dest = &(*D);
-    }
-    else // if there are edges on the current node
+    // if there are edges on the current node
+    if (currentNode->edges != NULL)
     {
         p_edge edgesOfNode = currentNode->edges;
         while (edgesOfNode->next != NULL)
@@ -33,10 +20,26 @@ void addEdge(p_node currentNode, int dest, int w, p_node *head)
         exit(1);
         p_edge new_1 = edgesOfNode->next;
         // add edge in the end of node's list of edges
-        new_1 ->next = NULL;
-        new_1 ->weight = w;
         node *D = getNode(dest, head);
         new_1 ->dest = &(*D);
+        new_1 ->next = NULL;
+        new_1 ->weight = w;
+      
+    }
+        
+    else // if there are no edges on the current node
+    {
+               // allocate memory in size of sruct Edge and return pointer to this struct
+        currentNode->edges = (p_edge)malloc(sizeof(edge)); 
+
+        if (currentNode->edges == NULL)
+       exit(1);
+        // add edge in empty list
+        currentNode->edges->weight = w;
+        currentNode->edges->next = NULL;
+        node *D = getNode(dest, head);
+        currentNode->edges->dest = &(*D);
+        
     }
 }
 
