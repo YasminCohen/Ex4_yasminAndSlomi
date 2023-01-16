@@ -15,15 +15,14 @@ void addEdge(p_node currentNode, int dest, int w, p_node *head)
             edgesOfNode = edgesOfNode->next;
         }
         // allocate memory and check if it allocated
-        p_edge edgesOfNodeNext = edgesOfNode->next;
-        edgesOfNodeNext = (p_edge)malloc(sizeof(edge));
-        if (edgesOfNodeNext == NULL)
+        edgesOfNode->next = (p_edge)malloc(sizeof(edge));
+        if (edgesOfNode->next == NULL)
         exit(1);
         // add edge in the end of node's list of edges
-        edgesOfNodeNext->next = NULL;
-        edgesOfNodeNext->weight = w;
+        edgesOfNode->next->next = NULL;
+        edgesOfNode->next->weight = w;
         node *D = getNode(dest, head);
-        edgesOfNodeNext->dest = &(*D);
+        edgesOfNode->next->dest = &(*D);
     
     }
     // if there are no edges on the current node
@@ -36,9 +35,9 @@ void addEdge(p_node currentNode, int dest, int w, p_node *head)
         exit(1);
         // add edge in empty list
         currentNode->edges->weight = w;
+        currentNode->edges->next = NULL;
         node *D = getNode(dest, head);
         currentNode->edges->dest = &(*D);
-        currentNode->edges->next = NULL;
     }
 }
 
