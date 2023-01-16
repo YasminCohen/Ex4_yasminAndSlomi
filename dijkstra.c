@@ -29,15 +29,6 @@ p_dijkstra createDijkstra(p_node start, int src)
     return head;
 }
 
-void deleteDijkstra(p_dijkstra dijkstra)
-{
-    while (dijkstra != NULL)
-    {
-        p_dijkstra temp = dijkstra;
-        dijkstra = dijkstra->next;
-        free(temp);
-    }
-}
 
 p_dijkstra getPointerDijkstra(p_dijkstra head, int id)
 {
@@ -51,25 +42,6 @@ p_dijkstra getPointerDijkstra(p_dijkstra head, int id)
     }
     return NULL;
 }
-
-p_dijkstra minVertical(p_dijkstra head)
-{
-    p_dijkstra ver = NULL;
-    while (head != NULL)
-    {
-        if ((head->tag)!=1 && (ver == NULL || ver->weight < head->weight) && head->weight < INFINITY)
-        {
-            ver = head;
-        }
-        head = head->next;
-    }
-    if (ver != NULL)
-    {
-        ver->tag = 1;
-    }
-    return ver;
-}
-
 int shortestPath(p_node head, int src, int dest)
 {
     p_dijkstra dijkstraHead = createDijkstra(head, src);
@@ -125,7 +97,7 @@ int shortestPath(p_node head, int src, int dest)
     {
         if (temp->node->nodeId == dest)
         {
-            distance  =  temp->weight;
+            distance  = temp->weight;
         }
         temp = temp->next;
     }
@@ -133,6 +105,14 @@ int shortestPath(p_node head, int src, int dest)
     {
         distance = -1;
     }
-    deleteDijkstra(dijkstraHead);
+       while (dijkstraHead != NULL)
+    {
+        p_dijkstra temp = dijkstraHead;
+        dijkstraHead = dijkstraHead->next;
+        free(temp);
+    }
+    free(temp);
+    free(ver);
+    free(help);
     return distance;
 }
