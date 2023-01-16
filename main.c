@@ -12,7 +12,7 @@ int main()
     p_node temp = NULL;
     p_node *head = &temp;
     int a = scanf("%c", &choice);
-    while (a != 0)
+    while (a != EOF)
     {
         if (choice == 'A')
         {
@@ -22,7 +22,7 @@ int main()
 
             scanf("%c", &c);
         a = scanf("%c", &c);
-            while ( a != 0)
+            while ( a!= 0)
             {
                 if (c == 'n')
                 {
@@ -38,6 +38,7 @@ int main()
         }
         if (choice == 'B')
         {
+
             addNode_B(head);
 
             continue;
@@ -50,7 +51,7 @@ int main()
         }
         if (choice == 'S')
         {
-            int start, end;
+            int start = -1, end = -1;
             scanf("%d %d", &start, &end);
             int dist = shortestPath(*head, start, end);
             printf("Dijsktra shortest path: %d \n", dist);
