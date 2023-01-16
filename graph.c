@@ -54,21 +54,3 @@ void deleteGraph(p_node *head)
     }
     free(tempNode);
 }
-
-// //print fuction in order to check myself (can be deleted)
-// void printGraph(p_node head)
-// { 
-//     p_node tempNode = head;
-//     while (tempNode != NULL)
-//     {
-//         printf("Node: %d {", tempNode->nodeId);
-//         p_edge tempEdge = tempNode->edges;
-//         while (tempEdge != NULL)
-//         {
-//             printf("dest: %d weight: %d ", tempEdge->dest->nodeId, tempEdge->weight);
-//             tempEdge = tempEdge->next;
-//         }
-//         printf("}");
-//         tempNode = tempNode->next;
-//     }
-// }
