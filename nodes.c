@@ -74,7 +74,7 @@ void addNode_B(p_node *head)
         {
             if (isalpha(dest) || isalpha(weight))
             {
-                break;
+                return;
             }
             addEdge(temp, dest, weight, head);
         }
@@ -89,20 +89,18 @@ void addNode_B(p_node *head)
         }
         p_node newNode = (p_node)(malloc(sizeof(node)));
         if (newNode == NULL)
-        {
-            perror("there is no enough space to add node, sorry\n");
-            exit(0);
-        }
+        exit(1);
+        inGraph->next = newNode;
         newNode->nodeId = src;
         newNode->edges = NULL;
         newNode->next = NULL;
-        inGraph->next = newNode;
+        
         
         while (scanf("%d", &dest) != 0 && scanf("%d", &weight) != 0)
         {
             if (isalpha(dest) || isalpha(weight))
             {
-                break;
+                return;
             }
             addEdge(newNode, dest, weight, head);
         }
@@ -111,27 +109,28 @@ void addNode_B(p_node *head)
 
 void deleteNode(p_node *head)
 {
-    int D = 0;
-    scanf("%d", &D);
+    int D = -1;
+    if (scanf("%d", &D)!=EOF){
     deleteEdge(head, D);
     p_node tempNode = *head;
     node *p = NULL;
-    if (tempNode->nodeId != D)
+    if (tempNode->nodeId == D)
     {
-        while (tempNode->next->nodeId != D)
+        p = *head;
+        *head = p->next;
+        freeEdges(p);
+        free(p); 
+    }
+    else
+    {
+     while (tempNode->next->nodeId != D)
         {
             tempNode = tempNode->next;
         }
         p = tempNode->next;
         tempNode->next = tempNode->next->next;
         freeEdges(p);
-        free(p);
+        free(p);   
     }
-    else
-    {
-        p = *head;
-        *head = p->next;
-        freeEdges(p);
-        free(p);
     }
 }
