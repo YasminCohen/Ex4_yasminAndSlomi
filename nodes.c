@@ -26,15 +26,14 @@ p_node getNode(int id, p_node *head)
 void addNode(p_node *head, int src)
 {
     p_node temp = getNode(src, head);
-    int dest =-1, weight =-1;
+      int dest =-1, weight =-1;
     while (scanf("%d", &dest) != 0 && scanf("%d", &weight) != 0)
     {
         if (isalpha(dest) || isalpha(weight))
         {
             break;
-        }else{
-            addEdge(temp, dest, weight, head);
-        } 
+        }
+        addEdge(temp, dest, weight, head);
     }
 }
 
@@ -54,7 +53,10 @@ void addNode_B(p_node *head)
         }
         p_node newNode = (p_node)(malloc(sizeof(node)));
         if (newNode == NULL)
-            exit(1);
+        {
+            perror("there is no enough space to add node, sorry\n");
+            exit(0);
+        }
         newNode->nodeId = src;
         newNode->edges = NULL;
         newNode->next = NULL;
