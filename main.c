@@ -34,7 +34,6 @@ int main()
                 }
             }
             choice = c;
-            //continue;
         }
         if (choice == 'B')
         {
