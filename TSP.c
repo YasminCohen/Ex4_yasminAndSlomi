@@ -6,10 +6,10 @@
 
 
 
-void swap(int i, int j){
-    int temp=i;
-     i=j;
-    j=temp;
+void swap(int *i, int *j){
+    int temp=*i;
+     *i =*j;
+    *j=temp;
 }
 
 void TSP(p_node head)
@@ -37,7 +37,7 @@ void TSP(p_node head)
 
         for(i=0; i < arrlen-1; i++){
 
-         swap(arr[i], arr[i+1]);
+         swap(arr+i, arr+i+1);
               
             //one more loop that goes over all given nodes and finds shortest path between each node
             current_path = 0;
