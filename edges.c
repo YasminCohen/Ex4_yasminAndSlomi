@@ -43,27 +43,6 @@ void addEdge(p_node currentNode, int dest, int w, p_node *head)
     }
 }
 
-/* goes over all edges of a give node and free them one by one */
-void freeEdges(p_node node)
-{
-    if (node->edges != NULL)
-    {
-        p_edge temp = node->edges;
-
-        while (temp != NULL)
-        {
-            p_edge p1 = NULL;
-            p1 = temp;
-            temp = temp->next;
-            free(p1);
-        }
-    }
-
-    else{ // if it was no edges
-        free(node->edges);
-    }
-}
-
 /* finds edges with node with id=nodeId and removes (free the memory) */
 void deleteEdge(p_node *head, int nodeId)
 {
