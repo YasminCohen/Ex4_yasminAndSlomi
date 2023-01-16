@@ -73,7 +73,20 @@ p_dijkstra minVertical(p_dijkstra head)
 int shortestPath(p_node head, int src, int dest)
 {
     p_dijkstra dijkstraHead = createDijkstra(head, src);
-    p_dijkstra u = minVertical(dijkstraHead);
+    p_dijkstra ver = NULL;
+    while (dijkstraHead != NULL)
+    {
+        if (!dijkstraHead->tag && dijkstraHead->weight < INFINITY && (ver == NULL || ver->weight < dijkstraHead->weight))
+        {
+            ver = dijkstraHead;
+        }
+        dijkstraHead = dijkstraHead->next;
+    }
+    if (ver != NULL)
+    {
+        ver->tag = 1;
+    }
+    p_dijkstra u = ver;
     while (u != NULL)
     {
         p_edge edgeIndex = u->node->edges;
