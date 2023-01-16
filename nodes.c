@@ -25,8 +25,9 @@ p_node getNode(int id, p_node *head)
 /* add node in the graph and also its edges if we get them in input else add only the node */
 void addNode(p_node *head, int src)
 {
+    int dest;
+    int weight;
     p_node temp = getNode(src, head);
-      int dest =-1, weight =-1;
     while (scanf("%d", &dest) != 0 && scanf("%d", &weight) != 0)
     {
         if (isalpha(dest) || isalpha(weight))
