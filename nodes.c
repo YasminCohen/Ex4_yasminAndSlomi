@@ -10,13 +10,13 @@ p_node getNode(int id, p_node *head)
 
     while (temp != NULL)
     {
-        if (temp->nodeId == id)
+        if (temp->nodeId != id)
         {
-            return temp;
+            temp = temp->next;
         }
         else
         {
-            temp = temp->next;
+            return temp;
         }
     }
     return NULL;
