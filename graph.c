@@ -6,15 +6,14 @@
 /* function to create the graph with a given number of nodes */
 p_node createGraph(int num_nodes)
 {
-    node *head = NULL;
+    //node *head = NULL;
+    p_node head = NULL;
     p_node newNode, temp = NULL;
     
     head = (p_node)malloc(sizeof(node));
     if (head == NULL)
-    {
-        perror("there is no enough space to create the graph, sorry\n");
-        exit(0);
-    }
+    exit(1);
+
     head->nodeId = 0;
     head->next = NULL;
     head->edges = NULL;
@@ -24,10 +23,8 @@ p_node createGraph(int num_nodes)
     {
         newNode = (p_node)malloc(sizeof(node));
         if (newNode == NULL)
-        {
-            perror("there is no enough space to create the node, sorry\n");
-            exit(0);
-        }
+        exit(1);
+
         newNode->nodeId = i;
         newNode->next = NULL;
         newNode->edges = NULL;
