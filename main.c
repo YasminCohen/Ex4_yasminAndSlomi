@@ -5,13 +5,14 @@
 
 int main()
 {
-    char choice, c;
-    int src, v;
-    src = 0;
-    v = src;
+    char choice;
+    char c;
+    int src =0;
+    int v = 0;
     p_node temp = NULL;
     p_node *head = &temp;
-    while (scanf("%c", &choice) != EOF)
+    int a = scanf("%c", &choice);
+    while (a != 0)
     {
         if (choice == 'A')
         {
@@ -20,8 +21,8 @@ int main()
             *head = createGraph(v);
 
             scanf("%c", &c);
-
-            while (scanf("%c", &c) != 0)
+        a = scanf("%c", &c);
+            while ( a != 0)
             {
                 if (c == 'n')
                 {
@@ -33,11 +34,10 @@ int main()
                     break;
                 }
             }
-            choice = c;
+            continue;
         }
         if (choice == 'B')
         {
-
             addNode_B(head);
 
             continue;
@@ -50,7 +50,7 @@ int main()
         }
         if (choice == 'S')
         {
-            int start = -1, end = -1;
+            int start, end;
             scanf("%d %d", &start, &end);
             int dist = shortestPath(*head, start, end);
             printf("Dijsktra shortest path: %d \n", dist);
