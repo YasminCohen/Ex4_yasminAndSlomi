@@ -27,7 +27,7 @@ void TSP(p_node head)
     
     //calculates all permutations of a given nodes and
     //on each permutation calculates all shortest paths between nodes
-    int j, i, temp;
+    int j, i;
     int best_path, current_path;
     int existsPath, pathFound; //flags
     pathFound = 0;
@@ -37,9 +37,7 @@ void TSP(p_node head)
 
         for(i=0; i < arrlen-1; i++){
 
-            temp=arr[i];
-            arr[i]=arr[i+1];
-            arr[i+1]=temp;
+         swap(arr[i], arr[i+1]);
               
             //one more loop that goes over all given nodes and finds shortest path between each node
             current_path = 0;
