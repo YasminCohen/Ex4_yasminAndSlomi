@@ -11,8 +11,7 @@ int main()
     int v = 0;
     p_node temp = NULL;
     p_node *head = &temp;
-    int a = scanf("%c", &choice);
-    while (a != EOF)
+    while (scanf("%c", &choice) != EOF)
     {
         if (choice == 'A')
         {
@@ -21,8 +20,8 @@ int main()
             *head = createGraph(v);
 
             scanf("%c", &c);
-        a = scanf("%c", &c);
-            while ( a!= 0)
+
+            while (scanf("%c", &c) != 0)
             {
                 if (c == 'n')
                 {
