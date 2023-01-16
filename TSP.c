@@ -4,45 +4,48 @@
 
 //*********function for solving TSP*********//
 
-
+void swap(int i, int j){
+    int temp=i;
+     i=j;
+    j=temp;
+}
 
 
 void TSP(p_node head)
 {
 	int arrlen = -1;
-    p_node graph = head;
     scanf("%d", &arrlen);
+    
+    p_node graph = head;
 
-    int *arr = (int *)(calloc(arrlen, sizeof(int)));
+    int *arr = (int *)malloc(arrlen*sizeof(int));
     for (int i = 0; i < arrlen; i++)
     {
-        scanf("%d", &arr[i]);
+        scanf("%d", arr+i);
     }
     
     //calculates all permutations of a given nodes and
     //on each permutation calculates all shortest paths between nodes
-    int j, i, temp;
+    
     int best_path, current_path;
     int existsPath, pathFound; //flags
     pathFound = 0;
     best_path = 999999;
+    for(int j=1; j <= arrlen; j++){
 
-    for(j=1; j <= arrlen; j++){
+        for(int i=0; i < arrlen-1; i++){
 
-        for(i=0; i < arrlen-1; i++){
-
-            temp=arr[i];
-            arr[i]=arr[i+1];
-            arr[i+1]=temp;
+            swap( arr[i], arr[i+1]);
               
             //one more loop that goes over all given nodes and finds shortest path between each node
             current_path = 0;
             existsPath = 1;
-            for(int node = 0; node<arrlen-1;  node++){
+            for(int node = 0; node < arrlen-1;  node++){
                 int dijk = shortestPath(graph, *(arr+node), *(arr+(node+1)));
-                if (dijk == -1)
+                if (dijk == -1){
                     existsPath = 0;
-                current_path += dijk;
+                }
+                    current_path += dijk;
             }
              //finds best solution
 
