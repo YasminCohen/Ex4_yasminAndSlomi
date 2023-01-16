@@ -19,7 +19,7 @@ int main()
             scanf("%d", &v);
             *head = createGraph(v);
 
-            //scanf("%c", &c);
+            scanf("%c", &c);
 
             while (scanf("%c", &c) != 0)
             {
