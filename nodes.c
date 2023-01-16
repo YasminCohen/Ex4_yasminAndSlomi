@@ -118,7 +118,22 @@ void deleteNode(p_node *head)
     {
         p = *head;
         *head = p->next;
-        freeEdges(p);
+    if (p->edges != NULL)
+    {
+        p_edge temp = p->edges;
+
+        while (temp != NULL)
+        {
+            p_edge p1 = NULL;
+            p1 = temp;
+            temp = temp->next;
+            free(p1);
+        }
+    }
+
+    else{ // if it was no edges
+        free(p->edges);
+    }
         free(p); 
     }
     else
@@ -129,7 +144,22 @@ void deleteNode(p_node *head)
         }
         p = tempNode->next;
         tempNode->next = tempNode->next->next;
-        freeEdges(p);
+        if (p->edges != NULL)
+    {
+        p_edge temp = p->edges;
+
+        while (temp != NULL)
+        {
+            p_edge p1 = NULL;
+            p1 = temp;
+            temp = temp->next;
+            free(p1);
+        }
+    }
+
+    else{ // if it was no edges
+        free(p->edges);
+    }
         free(p);   
     }
     }
