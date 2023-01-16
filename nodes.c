@@ -10,13 +10,13 @@ p_node getNode(int id, p_node *head)
 
     while (temp != NULL)
     {
-        if (temp->nodeId != id)
-        {
-            temp = temp->next;
-        }
         if (temp->nodeId == id)
         {
             return temp;
+        }
+        else
+        {
+            temp = temp->next;
         }
     }
     return NULL;
@@ -25,6 +25,7 @@ p_node getNode(int id, p_node *head)
 /* add node in the graph and also its edges if we get them in input else add only the node */
 void addNode(p_node *head, int src)
 {
+
     int dest;
     int weight;
     p_node temp = getNode(src, head);
