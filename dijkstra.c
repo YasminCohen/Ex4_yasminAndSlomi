@@ -103,7 +103,21 @@ int shortestPath(p_node head, int src, int dest)
             }
             edgeIndex = edgeIndex->next;
         }
-        u = minVertical(dijkstraHead);
+    help = dijkstraHead;
+ ver = NULL;
+    while (help != NULL)
+    {
+        if ((help->tag)!=1 && (ver == NULL || ver->weight < help->weight) && help->weight < INFINITY)
+        {
+            ver = help;
+        }
+        help = help->next;
+    }
+    if (ver != NULL)
+    {
+        ver->tag = 1;
+    }
+    u = ver;
     }
     int distance= -1;
     p_dijkstra  temp = dijkstraHead;
