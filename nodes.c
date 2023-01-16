@@ -25,17 +25,16 @@ p_node getNode(int id, p_node *head)
 /* add node in the graph and also its edges if we get them in input else add only the node */
 void addNode(p_node *head, int src)
 {
-
-    int dest;
-    int weight;
     p_node temp = getNode(src, head);
+    int dest =-1, weight =-1;
     while (scanf("%d", &dest) != 0 && scanf("%d", &weight) != 0)
     {
         if (isalpha(dest) || isalpha(weight))
         {
             break;
-        }
-        addEdge(temp, dest, weight, head);
+        }else{
+            addEdge(temp, dest, weight, head);
+        } 
     }
 }
 
@@ -43,8 +42,7 @@ void addNode_B(p_node *head)
 {
     int src;
     scanf("%d", &src);
-    int dest;
-    int weight;
+    int dest =-1 , weight =-1;
     p_node temp = getNode(src, head);
     if (temp == NULL)
     {
@@ -55,15 +53,11 @@ void addNode_B(p_node *head)
         }
         p_node newNode = (p_node)(malloc(sizeof(node)));
         if (newNode == NULL)
-        {
-            perror("there is no enough space to add node, sorry\n");
-            exit(0);
-        }
+            exit(1);
+        inGraph->next = newNode;
         newNode->nodeId = src;
         newNode->edges = NULL;
         newNode->next = NULL;
-        inGraph->next = newNode;
-        
         while (scanf("%d", &dest) != 0 && scanf("%d", &weight) != 0)
         {
             if (isalpha(dest) || isalpha(weight))
@@ -75,7 +69,23 @@ void addNode_B(p_node *head)
     }
     else
     {
-        freeEdges(temp);
+        
+    if (temp->edges != NULL)
+    {
+        p_edge temp1 = temp->edges;
+
+        while (temp1 != NULL)
+        {
+            p_edge p1 = NULL;
+            p1 = temp1;
+            temp1 = temp1->next;
+            free(p1);
+        }
+    }
+
+    else{ // if it was no edges
+        free(temp->edges);
+    }
         temp->edges = NULL;
         
         while (scanf("%d", &dest) != 0 && scanf("%d", &weight) != 0)
