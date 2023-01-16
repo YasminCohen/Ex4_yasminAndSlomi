@@ -10,10 +10,7 @@ p_dijkstra createDijkstra(p_node start, int src)
     {
         (*index) = (p_dijkstra)malloc(sizeof(dijkstra));
         if ((*index) == NULL)
-        {
-            perror("there is no enough space to create dijkstra struct, sorry\n");
-            exit(0);
-        }
+        exit(1);
 
         (*index)->node = start;
         if (start->nodeId == src)
@@ -55,28 +52,25 @@ p_dijkstra getPointerDijkstra(p_dijkstra head, int id)
     return NULL;
 }
 
-p_dijkstra minVertical(p_dijkstra head)
+
+
+int shortestPath(p_node head, int src, int dest)
 {
+    p_dijkstra dijkstraHead = createDijkstra(head, src);
     p_dijkstra ver = NULL;
-    while (head != NULL)
+    while (dijkstraHead != NULL)
     {
-        if (!head->tag && head->weight < INFINITY && (ver == NULL || ver->weight < head->weight))
+        if (!dijkstraHead->tag && dijkstraHead->weight < INFINITY && (ver == NULL || ver->weight < dijkstraHead->weight))
         {
-            ver = head;
+            ver = dijkstraHead;
         }
-        head = head->next;
+        dijkstraHead = dijkstraHead->next;
     }
     if (ver != NULL)
     {
         ver->tag = 1;
     }
-    return ver;
-}
-
-int shortestPath(p_node head, int src, int dest)
-{
-    p_dijkstra dijkstraHead = createDijkstra(head, src);
-    p_dijkstra u = minVertical(dijkstraHead);
+    p_dijkstra u = ver;
     while (u != NULL)
     {
         p_edge edgeIndex = u->node->edges;
@@ -91,7 +85,20 @@ int shortestPath(p_node head, int src, int dest)
             }
             edgeIndex = edgeIndex->next;
         }
-        u = minVertical(dijkstraHead);
+          p_dijkstra ver = NULL;
+    while (dijkstraHead != NULL)
+    {
+        if (!dijkstraHead->tag && dijkstraHead->weight < INFINITY && (ver == NULL || ver->weight < dijkstraHead->weight))
+        {
+            ver = dijkstraHead;
+        }
+        dijkstraHead = dijkstraHead->next;
+    }
+    if (ver != NULL)
+    {
+        ver->tag = 1;
+    }
+        u = ver;
     }
     int distance = getPointerDijkstra(dijkstraHead, dest)->weight;
     if (distance == INFINITY)
