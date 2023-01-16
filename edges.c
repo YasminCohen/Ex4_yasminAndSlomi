@@ -53,9 +53,25 @@ void deleteEdge(p_node *head, int nodeId)
         if (tempNode->nodeId != nodeId && tempNode->edges != NULL)
         {
 
-            if (tempNode->edges->dest->nodeId != nodeId)
+            if (tempNode->edges->dest->nodeId == nodeId)
             {
-                p_edge tempEdge = tempNode->edges;
+                if (tempNode->edges->next != NULL)
+                {
+                    p_edge p1 = tempNode->edges;
+                    tempNode->edges = p1->next;
+                    free(p1);
+                   
+                }
+                else
+                {
+                     p_edge p1 = tempNode->edges;
+                    tempNode->edges = NULL;
+                    free(p1);
+                }
+            }
+            else
+            {   
+                 p_edge tempEdge = tempNode->edges;
 
                 while (tempEdge->next != NULL)
                 {
@@ -65,23 +81,9 @@ void deleteEdge(p_node *head, int nodeId)
                         tempEdge->next = tempEdge->next->next;
                         free(p1);
                         break;
-                    }
+                    }else{
                     tempEdge = tempEdge->next;
-                }
-            }
-            else
-            {   
-                if (tempNode->edges->next == NULL)
-                {
-                    p_edge p1 = tempNode->edges;
-                    tempNode->edges = NULL;
-                    free(p1);
-                }
-                else
-                {
-                    p_edge p1 = tempNode->edges;
-                    tempNode->edges = p1->next;
-                    free(p1);
+                    }
                 }
             }
         }
