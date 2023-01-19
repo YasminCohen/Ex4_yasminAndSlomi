@@ -6,20 +6,20 @@ p_dijkstra createDijkstra(p_node start, int src)
 {
     p_dijkstra head = NULL;
     p_dijkstra *index = &head;
+    (*index) = (p_dijkstra)malloc(sizeof(dijkstra));
+     if ((*index) == NULL)
+        exit(1);
     while (start != NULL)
     {
-        (*index) = (p_dijkstra)malloc(sizeof(dijkstra));
-        if ((*index) == NULL)
-        exit(1);
-
         (*index)->node = start;
-        if (start->nodeId == src)
+        if (start->nodeId != src)
         {
-            (*index)->weight = 0;
+            (*index)->weight = INFINITY;
+          
         }
         else
         {
-            (*index)->weight = INFINITY;
+              (*index)->weight = 0;
         }
         (*index)->tag = 0;
         (*index)->next = NULL;
@@ -42,31 +42,10 @@ p_dijkstra getPointerDijkstra(p_dijkstra head, int id)
     }
     return NULL;
 }
-int shortestPath(p_node start, int src, int dest)
-{
-        p_dijkstra head1 = NULL;
-        p_dijkstra *index = &head1;
-        while (start != NULL)
-        {
-        (*index) = (p_dijkstra)malloc(sizeof(dijkstra));
-        if ((*index) == NULL)
-        exit(1);
+int shortestPath(p_node head, int src, int dest)
 
-        (*index)->node = start;
-        if (start->nodeId == src)
-        {
-            (*index)->weight = 0;
-        }
-        else
-        {
-            (*index)->weight = INFINITY;
-        }
-        (*index)->tag = 0;
-        (*index)->next = NULL;
-        index = &((*index)->next);
-        start = start->next;
-    }
-    p_dijkstra dijkstraHead = head1;
+{
+    p_dijkstra dijkstraHead = createDijkstra(head, src);
     p_dijkstra help = dijkstraHead;
     p_dijkstra ver = NULL;
     while (help != NULL)
