@@ -42,9 +42,8 @@ p_dijkstra getPointerDijkstra(p_dijkstra head, int id)
     }
     return NULL;
 }
-int shortestPath(p_node head, int src, int dest)
+int shortestPath(p_node start, int src, int dest)
 {
-        p_node start = head;
         p_dijkstra head1 = NULL;
         p_dijkstra *index = &head1;
         while (start != NULL)
