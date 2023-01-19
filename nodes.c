@@ -3,7 +3,6 @@
 #include <ctype.h>
 #include "graph.h"
 
-/* returns node in the graph with given id */
 p_node getNode(int id, p_node *head)
 {
     p_node temp = *head;
@@ -22,7 +21,7 @@ p_node getNode(int id, p_node *head)
     return NULL;
 }
 
-/* add node in the graph and also its edges if we get them in input else add only the node */
+
 void addNode(p_node *head, int src)
 {
 
@@ -65,7 +64,7 @@ void addNode_B(p_node *head)
         }
     }
 
-    else{ // if it was no edges
+    else{ 
         free(temp->edges);
     }
         temp->edges = NULL;
@@ -131,7 +130,7 @@ void deleteNode(p_node *head)
         }
     }
 
-    else{ // if it was no edges
+    else{ 
         free(p->edges);
     }
         free(p); 
@@ -157,7 +156,7 @@ void deleteNode(p_node *head)
         }
     }
 
-    else{ // if it was no edges
+    else{
         free(p->edges);
     }
         free(p);   

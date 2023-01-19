@@ -1,20 +1,17 @@
 #ifndef GRAPH_H
 #define GRAPH_H
 
-#define INFINITY 100000
+#define INFINITY 10000000
+typedef struct Edge edge, *p_edge;
 
-typedef struct Edge *p_edge; //for struct Node
 
-//**********************STRUCTURIES*********************//
-
-//-------Node-------//
 typedef struct Node {
     int nodeId;
     p_edge edges;
     struct Node *next;
 } node, *p_node;
 
-//-------Dijkstra-------//
+
 typedef struct Dijkstra {
     p_node node;
     int weight;
@@ -22,7 +19,6 @@ typedef struct Dijkstra {
     struct Dijkstra *next;
 } dijkstra, *p_dijkstra;
 
-//-------Edge-------//
 typedef struct Edge {
     int weight;
     p_node dest;
@@ -31,7 +27,6 @@ typedef struct Edge {
 
 
 
-//**********************GRPAH'S FUNCTIONS DECLARATION*********************//
 p_node createGraph(int nodes);
 
 void addNode(p_node *head, int src);
@@ -54,8 +49,6 @@ void deleteEdge(p_node *head, int nodeId);
 
 void TSP(p_node head);
 
-
-//**********************DIJKSTRA'S FUNCTIONS DECLARATION*********************//
 p_dijkstra createDijkstra(p_node start, int src);
 
 p_dijkstra getPointerDijkstra(p_dijkstra head, int id);
@@ -66,8 +59,6 @@ p_dijkstra minVertical(p_dijkstra head);
 
 int shortestPath(p_node head, int src, int dest);
 
-
-//**********************TSP'S FUNCTIONS DECLARATION*********************//
 void TSP(p_node head);
 
-#endif //GRAPH_H
+#endif

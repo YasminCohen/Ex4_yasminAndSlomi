@@ -3,7 +3,6 @@
 #include <ctype.h>
 #include "graph.h"
 
-/* function to create the graph with a given number of nodes */
 p_node createGraph(int num_nodes)
 {
     p_node newNode, temp, head = NULL;
@@ -34,8 +33,7 @@ p_node createGraph(int num_nodes)
     }
     return head;
 }
-/* function to delete the graph, goes over all
-*  edges and then nodes and free their memories */
+
 void deleteGraph(p_node *head)
 {
     p_node tempNode = *head;

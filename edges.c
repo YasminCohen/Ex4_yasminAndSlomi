@@ -3,10 +3,8 @@
 #include <ctype.h>
 #include "graph.h"
 
-/* function to add the edge with a given src(our node), dest and weight of edge */
 void addEdge(p_node currentNode, int dest, int w, p_node *head)
 {
-    // if there are edges on the current node
     if (currentNode->edges != NULL)
     {
         p_edge edgesOfNode = currentNode->edges;
@@ -14,12 +12,10 @@ void addEdge(p_node currentNode, int dest, int w, p_node *head)
         {
             edgesOfNode = edgesOfNode->next;
         }
-        // allocate memory and check if it allocated
         edgesOfNode->next = (p_edge)malloc(sizeof(edge));
         if (edgesOfNode->next == NULL)
         exit(1);
         p_edge new_1 = edgesOfNode->next;
-        // add edge in the end of node's list of edges
         node *D = getNode(dest, head);
         new_1 ->dest = &(*D);
         new_1 ->next = NULL;
@@ -27,14 +23,14 @@ void addEdge(p_node currentNode, int dest, int w, p_node *head)
       
     }
         
-    else // if there are no edges on the current node
+    else 
     {
-               // allocate memory in size of sruct Edge and return pointer to this struct
+               
         currentNode->edges = (p_edge)malloc(sizeof(edge)); 
 
         if (currentNode->edges == NULL)
        exit(1);
-        // add edge in empty list
+    
         currentNode->edges->weight = w;
         currentNode->edges->next = NULL;
         node *D = getNode(dest, head);
@@ -43,7 +39,7 @@ void addEdge(p_node currentNode, int dest, int w, p_node *head)
     }
 }
 
-/* finds edges with node with id=nodeId and removes (free the memory) */
+
 void deleteEdge(p_node *head, int nodeId)
 {
     p_node tempNode = *head;
