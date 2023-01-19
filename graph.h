@@ -1,7 +1,7 @@
 #ifndef GRAPH_H
 #define GRAPH_H
 
-#define INFINITY 10000000
+#define INFINITY 100000000
 typedef struct Edge edge, *p_edge;
 
 
